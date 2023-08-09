@@ -1,17 +1,30 @@
 trigger:
   branches:
     include:
-    - main  # Veya hangi branch üzerinde çalışıyorsanız onu yazın
+    - main
 
 pool:
   name: azure-keda
 
 steps:
-- task: Kaniko@0
+- checkout: self
+
+# Kubernetes'te Docker kimlik bilgilerini tanımla
+- task: Kubernetes@1
   inputs:
-    containerRegistryType: 'Docker Registry'
-    dockerRegistryServiceConnection: 'dockerhub-furkan'  # Service Connections'da oluşturduğunuz Docker bağlantısının ID'si
-    imageNames: 'furkanakgun/azure-kaniko:$(Build.BuildId)'
-    dockerfile: 'Dockerfile'
-    buildContext: '$(System.DefaultWorkingDirectory)'
-    logLevel: 'info'
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceEndpoint: 'ado-agent-service-connection'
+    namespace: 'default'
+    command: 'apply'
+    useConfigurationFile: true
+    configuration: 'docker-credentials-secret.yml'
+
+# Kaniko ile Image Oluştur ve Pushla
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceEndpoint: 'ado-agent-service-connection'
+    namespace: 'default'
+    command: 'apply'
+    useConfigurationFile: true
+    configuration: 'kaniko-job.yml'
