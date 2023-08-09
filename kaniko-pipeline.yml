@@ -1,0 +1,17 @@
+trigger:
+  branches:
+    include:
+    - main  # Veya hangi branch üzerinde çalışıyorsanız onu yazın
+
+pool:
+  name: azure-keda
+
+steps:
+- task: Kaniko@0
+  inputs:
+    containerRegistryType: 'Docker Registry'
+    dockerRegistryServiceConnection: 'dockerhub-furkan'  # Service Connections'da oluşturduğunuz Docker bağlantısının ID'si
+    imageNames: 'furkanakgun/azure-kaniko:$(Build.BuildId)'
+    dockerfile: 'Dockerfile'
+    buildContext: '$(System.DefaultWorkingDirectory)'
+    logLevel: 'info'
