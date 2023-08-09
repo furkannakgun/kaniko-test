@@ -17,7 +17,7 @@ steps:
     namespace: 'default'
     command: 'apply'
     useConfigurationFile: true
-    configuration: 'docker-credentials-secret.yml'
+    configuration: 'docker-cred-secret.yaml'
 
 # Kaniko ile Image Oluştur ve Pushla
 - task: Kubernetes@1
