@@ -4,7 +4,7 @@ trigger:
     - main
 
 pool:
-  name: azure-keda
+  name: tzl-poc
   demands:
     - agent.name -equals tzl-poc-ado-778d964b76-77rbn
 
