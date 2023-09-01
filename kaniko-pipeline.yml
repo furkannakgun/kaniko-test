@@ -11,14 +11,12 @@ pool:
 steps:
 - checkout: self
 
-# Kubernetes'te Docker kimlik bilgilerini tanımla
 - task: Kubernetes@1
   inputs:
     connectionType: 'Kubernetes Service Connection'
     kubernetesServiceEndpoint: 'tzlpoc'
     namespace: 'default'
     command: 'get'
-    useConfigurationFile: true
     arguments: 'pods'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
