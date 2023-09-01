@@ -4,9 +4,9 @@ trigger:
     - main
 
 pool:
-  name: tzl-wl
+  name: tzl-shrd
   demands:
-    - agent.name -equals tzl-wl-ado-596bc54955-sjsxs
+    - agent.name -equals tzl-shrd-ado-66856dd5d7-pldtz
 
 steps:
 - checkout: self
