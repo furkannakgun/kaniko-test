@@ -4,9 +4,9 @@ trigger:
     - main
 
 pool:
-  name: tzl-poc
+  name: tzl-wl
   demands:
-    - agent.name -equals tzl-poc-ado-778d964b76-77rbn
+    - agent.name -equals tzl-wl-ado-596bc54955-4z92x
 
 steps:
 - checkout: self
