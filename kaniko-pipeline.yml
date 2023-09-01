@@ -5,6 +5,8 @@ trigger:
 
 pool:
   name: azure-keda
+  demands:
+  - agent.name equals 'tzl-poc-ado-778d964b76-77rbn'
 
 steps:
 - checkout: self
@@ -13,18 +15,12 @@ steps:
 - task: Kubernetes@1
   inputs:
     connectionType: 'Kubernetes Service Connection'
-    kubernetesServiceEndpoint: 'ado-agent-service-connection'
+    kubernetesServiceEndpoint: 'tzlpoc'
     namespace: 'default'
-    command: 'apply'
+    command: 'get'
     useConfigurationFile: true
-    configuration: 'docker-cred-secret.yaml'
+    arguments: 'pods'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
 
-# Kaniko ile Image Oluştur ve Pushla
-- task: Kubernetes@1
-  inputs:
-    connectionType: 'Kubernetes Service Connection'
-    kubernetesServiceEndpoint: 'ado-agent-service-connection'
-    namespace: 'default'
-    command: 'apply'
-    useConfigurationFile: true
-    configuration: 'kaniko-job.yaml'
+
