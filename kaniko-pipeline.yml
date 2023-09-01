@@ -4,9 +4,9 @@ trigger:
     - main
 
 pool:
-  name: tzl-mgmt
+  name: tzl-wl
   demands:
-    - agent.name -equals tzl-mgmt-ado-f9f9f4665-rn7sk
+    - agent.name -equals tzl-wl-ado-596bc54955-sjsxs
 
 steps:
 - checkout: self
