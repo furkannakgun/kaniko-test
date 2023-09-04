@@ -4,7 +4,7 @@ trigger:
     - main
 
 pool:
-  name: tzl-shrd
+  name: tzl-poc
   demands:
     - agent.name -equals tzl-poc-ado-f69787499-twjnm
 
