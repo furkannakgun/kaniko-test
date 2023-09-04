@@ -6,7 +6,7 @@ trigger:
 pool:
   name: tzl-shrd
   demands:
-    - agent.name -equals tzl-shrd-ado-66856dd5d7-pldtz
+    - agent.name -equals tzl-poc-ado-f69787499-twjnm
 
 steps:
 - checkout: self
